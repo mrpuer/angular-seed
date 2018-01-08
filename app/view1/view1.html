@@ -1,9 +1,10 @@
 Найти:
-<input ng-model="myQuery"><br><br>
+<input ng-model="myQuery.$"><br><br>
 
 Фильтрация по типу:
-<select ng-model="myOrderType" ng-options="pokemon.type[0] for pokemon in pokemons">
+<select ng-model="myQuery.type">
         <option value="">-- choose type --</option>
+        <option ng-repeat="pok in pokemons" value="{{pok.type[0]}}">{{pok.type[0]}}</option>
 </select><br><br>
 
 Сортировать по:
@@ -16,7 +17,7 @@
 </select>
 
 <ul>
-    <li ng-repeat="pokemon in pokemons | filter: myQuery | filter: myOrderType.type[0] | orderBy:myOrderProperty">
+    <li ng-repeat="pokemon in pokemons | filter: myQuery | orderBy:myOrderProperty">
         <img src="{{pokemon.ThumbnailImage}}" ng-click="imgAlert(pokemon.name)">
 
         <small>ID #{{pokemon.id }}</small>
@@ -27,6 +28,6 @@
     </li>
 </ul>
 <p ng-show="myQuery">
-    Выведены покемоны, содержащие
-    {{myQuery}}
+    Выведены покемоны, содержащие символы 
+    ' {{myQuery.$}} ' с типом ' {{myQuery.type}} '
 </p>
