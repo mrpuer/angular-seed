@@ -121,4 +121,5 @@ angular.module('myApp.view1', ['ngRoute'])
         }];
 
         $scope.myOrderProperty = 'id';
+        $scope.imgAlert = (name) => alert(name);
     });
